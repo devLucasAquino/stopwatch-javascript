@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Pomodoro Timer</title>
 </head>
-<body onload="template()" class="container bg-light text-center">
+<!-- onload="template()" -->
+<body  class="container bg-light text-center">
     <h1>Pomodoro timer</h1>
 
-    <div class="container w-25">
+    <div class="container w-25" id="container-timer">
         <div class="row">
-            <h2 id="minutes" class="col display-1"></h2>
+            <!-- <h2 id="minutes" class="col display-1"></h2> -->
+            <div id="input">
+                <input type="number" id="input-minutes" size="100"/></div>
             <h2 class="col display-1">:</h2>
             <h2 id="seconds" class="col display-1"></h2>
         </div>
