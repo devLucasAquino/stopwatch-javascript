@@ -2,15 +2,6 @@ let verifyInput = false;
 let min;
 let sec;
 
-function decreaseMinutes() {
-
-    if (min > 0) {
-        min--;
-        updateParagraph(min, 'paragraph-minutes');
-    }
-    
-}
-
 function decreaseSeconds() {
 
     if (sec > 0) {
@@ -20,25 +11,46 @@ function decreaseSeconds() {
     
 }
 
-function start() {
+function checkSeconds( time_sec ){
+
+    if (time_sec === 0) {
+        min--;
+        updateParagraph(min, 'paragraph-minutes');
+    }
+}
+
+function decreaseMinutes() {
+
+    setInterval(decreaseSeconds, 1000);
+}
+
+function returnMinutes(){
     let minutes = document.getElementById('input-minutes').value;
-    let seconds = document.getElementById('input-seconds').value;
 
     if(minutes > 59){
-       minutes = document.getElementById('input-minutes').value = 59;
+        minutes = 59;
+    }else if(minutes < 0 || minutes == ""){
+        minutes = 0;
     }
+    return minutes;
+}
 
-    if(minutes < 0){
-        minutes = document.getElementById('input-minutes').value = 0;
-    }
-
+function returnSeconds(){
+    let seconds = document.getElementById('input-seconds').value;
+    
     if(seconds > 59){
-        seconds = document.getElementById('input-seconds').value = 59;
+        seconds = 59;
+    }else if(seconds < 0 || seconds == ""){
+        seconds = 0;
     }
+    return seconds;
+}
 
-    if(seconds < 0){
-        seconds = document.getElementById('input-seconds').value = 0;
-    }
+function start() {
+    
+    let minutes = returnMinutes();
+    let seconds = returnSeconds();
+
 
     rmInput();
 
@@ -50,8 +62,9 @@ function start() {
         addParagraph(sec, 'container-seconds', 'paragraph-seconds');
     }
 
-    setInterval(decreaseMinutes, 1000);
-    setInterval(decreaseSeconds, 1000);
+    decreaseMinutes();
+    setInterval(checkSeconds( sec ), 1000);
+    
 
 }
 
