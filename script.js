@@ -40,8 +40,6 @@ function start() {
         seconds = document.getElementById('input-seconds').value = 0;
     }
 
-    console.log(minutes)
-
     rmInput();
 
     if (!verifyInput) {
@@ -56,6 +54,22 @@ function start() {
     setInterval(decreaseSeconds, 1000);
 
 }
+
+
+
+//////////////////WORKINGGGG!!///////////////////////
+function reset(){
+    const minutes = document.getElementById('input-minutes').value;
+    const seconds = document.getElementById('input-seconds').value;
+
+    min = minutes;
+    sec = seconds;
+
+    updateParagraph(min, 'paragraph-minutes');
+    updateParagraph(sec, 'paragraph-seconds');
+}
+
+//////////////////////////////////////////////
 
 function rmInput() {
     var removeInputMin = document.getElementById('input-minutes');
