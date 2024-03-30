@@ -21,8 +21,26 @@ function decreaseSeconds() {
 }
 
 function start() {
-    const minutes = document.getElementById('input-minutes').value;
-    const seconds = document.getElementById('input-seconds').value;
+    let minutes = document.getElementById('input-minutes').value;
+    let seconds = document.getElementById('input-seconds').value;
+
+    if(minutes > 59){
+       minutes = document.getElementById('input-minutes').value = 59;
+    }
+
+    if(minutes < 0){
+        minutes = document.getElementById('input-minutes').value = 0;
+    }
+
+    if(seconds > 59){
+        seconds = document.getElementById('input-seconds').value = 59;
+    }
+
+    if(seconds < 0){
+        seconds = document.getElementById('input-seconds').value = 0;
+    }
+
+    console.log(minutes)
 
     rmInput();
 
