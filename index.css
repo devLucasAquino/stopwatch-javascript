@@ -36,7 +36,7 @@ body{
     justify-content: center;
 }
 
-#paragraph{
+#paragraph-minutes, #paragraph-seconds{
     font-size: 4rem;
 }
 
