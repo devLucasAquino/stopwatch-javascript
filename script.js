@@ -8,20 +8,26 @@ function decreaseSeconds() {
         sec--;
         updateParagraph(sec, 'paragraph-seconds');
     }
-    
-}
 
-function checkSeconds( time_sec ){
+    if(min === 0 && sec === 0){
+        console.log('encerrou');
 
-    if (time_sec === 0) {
-        min--;
-        updateParagraph(min, 'paragraph-minutes');
+    }else if(min > 0){
+        
+        if(sec === 0){
+            sec = 59;
+            decreaseMinutes();
+            updateParagraph(sec, 'paragraph-seconds');
+        }
     }
+    
 }
 
 function decreaseMinutes() {
 
-    setInterval(decreaseSeconds, 1000);
+    min--;
+    updateParagraph(min, 'paragraph-minutes');
+
 }
 
 function returnMinutes(){
@@ -46,11 +52,9 @@ function returnSeconds(){
     return seconds;
 }
 
-function start() {
-    
+function start() { 
     let minutes = returnMinutes();
     let seconds = returnSeconds();
-
 
     rmInput();
 
@@ -62,13 +66,9 @@ function start() {
         addParagraph(sec, 'container-seconds', 'paragraph-seconds');
     }
 
-    decreaseMinutes();
-    setInterval(checkSeconds( sec ), 1000);
-    
+    setInterval(decreaseSeconds, 1000);
 
 }
-
-
 
 //////////////////WORKINGGGG!!///////////////////////
 function reset(){
@@ -81,8 +81,10 @@ function reset(){
     updateParagraph(min, 'paragraph-minutes');
     updateParagraph(sec, 'paragraph-seconds');
 }
-
 //////////////////////////////////////////////
+function stop(){
+
+}
 
 function rmInput() {
     var removeInputMin = document.getElementById('input-minutes');
