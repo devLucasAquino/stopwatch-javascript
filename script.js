@@ -1,33 +1,31 @@
-let verifyInput = false;
+let checkInput = false;
+
+let reservedMin;
+let reservedSec;
+let intervalID;
 let min;
 let sec;
 
 function decreaseSeconds() {
-
     if (sec > 0) {
         sec--;
         updateParagraph(sec, 'paragraph-seconds');
     }
-
     if(min === 0 && sec === 0){
-        console.log('encerrou');
-
+        stop();
     }else if(min > 0){
-        
+
         if(sec === 0){
             sec = 59;
             decreaseMinutes();
             updateParagraph(sec, 'paragraph-seconds');
         }
     }
-    
 }
 
 function decreaseMinutes() {
-
     min--;
     updateParagraph(min, 'paragraph-minutes');
-
 }
 
 function returnMinutes(){
@@ -55,35 +53,33 @@ function returnSeconds(){
 function start() { 
     let minutes = returnMinutes();
     let seconds = returnSeconds();
+    reservedMin = returnMinutes();
+    reservedSec = returnSeconds();
 
     rmInput();
-
-    if (!verifyInput) {
+    
+    if (!checkInput) {
         min = minutes;
         sec = seconds;
-        verifyInputMinutes = true;
+        checkInput = true;
         addParagraph(min, 'container-minutes', 'paragraph-minutes');
         addParagraph(sec, 'container-seconds', 'paragraph-seconds');
-    }
-
-    setInterval(decreaseSeconds, 1000);
-
+    } 
+    intervalID = setInterval(decreaseSeconds, 1000);
 }
 
-//////////////////WORKINGGGG!!///////////////////////
 function reset(){
-    const minutes = document.getElementById('input-minutes').value;
-    const seconds = document.getElementById('input-seconds').value;
 
-    min = minutes;
-    sec = seconds;
-
-    updateParagraph(min, 'paragraph-minutes');
-    updateParagraph(sec, 'paragraph-seconds');
+    if(checkInput){
+        clearInterval(intervalID);
+        updateParagraph(reservedMin, 'paragraph-minutes');
+        updateParagraph(reservedSec, 'paragraph-seconds');
+        checkInput = false; 
+    }
 }
-//////////////////////////////////////////////
-function stop(){
 
+function stop(){
+    clearInterval(intervalID);
 }
 
 function rmInput() {
