@@ -1,3 +1,6 @@
+var checkVariableMinutes = false;
+var checkVariableSeconds = false;
+var checkInputTrue = false;
 let checkInput = false;
 
 let reservedMin;
@@ -28,36 +31,71 @@ function decreaseMinutes() {
     updateParagraph(min, 'paragraph-minutes');
 }
 
-function returnMinutes(){
-    let minutes = document.getElementById('input-minutes').value;
+var seconds;
+var minutes;
 
-    if(minutes > 59){
-        minutes = 59;
-    }else if(minutes < 0 || minutes == ""){
-        minutes = 0;
+function returnMinutes(){
+    
+    if(!checkVariableMinutes){
+        minutes = document.getElementById('input-minutes').value;
+        
+        if(minutes > 59){
+            minutes = 59;
+        }else if(minutes < 0 || minutes == ""){
+            minutes = 0;
+        }
+
+        checkVariableMinutes = true;
+    }else{
+
+        if(minutes > 59){
+            minutes = 59;
+        }else if(minutes < 0 || minutes == ""){
+            minutes = 0;
+        }
+
     }
+    
     return minutes;
 }
 
+
 function returnSeconds(){
-    let seconds = document.getElementById('input-seconds').value;
-    
-    if(seconds > 59){
-        seconds = 59;
-    }else if(seconds < 0 || seconds == ""){
-        seconds = 0;
+
+    if(!checkVariableSeconds){
+        seconds = document.getElementById('input-seconds').value;
+
+        if(seconds > 59){
+            seconds = 59;
+        }else if(seconds < 0 || seconds == ""){
+            seconds = 0;
+        }
+
+        checkVariableSeconds = true;
+    }else{
+
+        if(seconds > 59){
+            seconds = 59;
+        }else if(seconds < 0 || seconds == ""){
+            seconds = 0;
+        }
     }
     return seconds;
 }
 
-function start() { 
+
+function start() {
+     
     let minutes = returnMinutes();
     let seconds = returnSeconds();
     reservedMin = returnMinutes();
     reservedSec = returnSeconds();
 
-    rmInput();
-    
+    if(!checkInputTrue){
+        rmInput();
+        checkInputTrue = true;
+    }
+
     if (!checkInput) {
         min = minutes;
         sec = seconds;
